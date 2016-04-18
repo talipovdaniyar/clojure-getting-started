@@ -28,14 +28,13 @@
 
 (defroutes app
   (GET "/" []
-       (str "Test: " (sql/query "postgres://rzdnlqvtihaywe:h8YMM9hPA-0CEPGPHvUJ23lo6r@ec2-54-228-246-19.eu-west-1.compute.amazonaws.com:5432/d3kf2u2jt4bnt3" 
+       (str "Test: " (sql/query "postgres://rzdnlqvtihaywe:h8YMM9hPA-0CEPGPHvUJ23lo6r@ec2-54-228-246-19.eu-west-1.compute.amazonaws.com:5432/d3kf2u2jt4bnt3"
        ["select * from salesforce.case"])))
 
 
 (defn -main [& [port]]
-  (migrate)
-  (let [port (Integer. (or port (env :port) 5000))]
-     (jetty/run-jetty (site #'app) {:port port :join? false})))
+ (let [port (Integer. (or port (env :port) 5000))]
+   (jetty/run-jetty (site #'app) {:port port :join? false})))
 
 
 ;; For interactive development:

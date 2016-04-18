@@ -15,9 +15,8 @@
 
 (defroutes app
   (GET "/" []
-       (splash (sql/query
-         "postgres://rzdnlqvtihaywe:h8YMM9hPA-0CEPGPHvUJ23lo6r@ec2-54-228-246-19.eu-west-1.compute.amazonaws.com:5432/d3kf2u2jt4bnt3"
-         ["select * from salesforcecloj.case"]))))
+       (splash (sql/query (System/getenv "DATABASE_URL")
+       ["select * from salesforcecloj.case"]))))
 
 
 (defn -main [& [port]]

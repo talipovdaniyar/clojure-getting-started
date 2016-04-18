@@ -9,27 +9,15 @@
     [environ.core :refer [env]]))
 
 
-(defn migrated? []
-  (-> (jdbc/query db/spec
-    [(str "select count(*) from information_schema.tables "
-    "where table_name='ticks'")])
-    first :count pos?))
-
-(defn migrate []
-  (when (not (migrated?))
-  (print "Creating database structure...") (flush)
-  (jdbc/db-do-commands db/spec
-    (jdbc/create-table-ddl
-      :ticks
-      [:id :serial "PRIMARY KEY"]
-      [:body :varchar "NOT NULL"]
-      [:tick :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]))
-      (println " done")))
+(defn splash [data]
+  {:status 200
+   :headers {"Content-Type" "text/plain"}
+   :body (str "Hello from Heroku" data)})
 
 (defroutes app
   (GET "/" []
-       (str "Test: " (sql/query "postgres://rzdnlqvtihaywe:h8YMM9hPA-0CEPGPHvUJ23lo6r@ec2-54-228-246-19.eu-west-1.compute.amazonaws.com:5432/d3kf2u2jt4bnt3"
-       ["select * from salesforce.case"])))
+       (splash (sql/query "postgres://rzdnlqvtihaywe:h8YMM9hPA-0CEPGPHvUJ23lo6r@ec2-54-228-246-19.eu-west-1.compute.amazonaws.com:5432/d3kf2u2jt4bnt3"
+       ["select * from salesforce.case"]))))
 
 
 (defn -main [& [port]]

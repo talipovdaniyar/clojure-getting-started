@@ -34,8 +34,8 @@
     (tick)
     {:status 200
       :headers {"Content-Type" "text/plain"}
-      :body (str "Ticks: " (first (jdbc/query db/spec ["select count(*) from ticks"])))}))
-      
+      :body (str "Ticks: " (first (jdbc/query db/spec ["select count(*) from salesforce.case"])))}))
+
 (defn -main [& [port]]
   (migrate)
   (let [port (Integer. (or port (env :port) 5000))]

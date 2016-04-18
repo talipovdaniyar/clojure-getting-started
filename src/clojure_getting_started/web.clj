@@ -1,10 +1,12 @@
 (ns clojure-getting-started.web
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [compojure.handler :refer [site]]
-            [compojure.route :as route]
-            [clojure.java.io :as io]
-            [ring.adapter.jetty :as jetty]
-            [environ.core :refer [env]]))
+  (:require
+    [clojure.java.jdbc :as jdbc]
+    [ticks.db :as db]
+    [compojure.core :refer [defroutes GET]]
+    [compojure.handler :refer [site]]
+    [compojure.route :as route]
+    [ring.adapter.jetty :as jetty]
+    [environ.core :refer [env]]))
 
 (defn splash []
   {:status 200

@@ -11,7 +11,7 @@
 (defn splash [data]
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body (str "Hello from Heroku " data)})
+   :body (str "Hello from Heroku " (apply str data))})
 
 (defroutes app
   (GET "/" []

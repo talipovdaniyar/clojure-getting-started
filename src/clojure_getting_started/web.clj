@@ -1,6 +1,6 @@
 (ns clojure-getting-started.web
   (:require
-    [clojure.java.jdbc :as jdbc]
+    [clojure.java.jdbc :as sql]
     [clojure-getting-started.db :as db]
     [compojure.core :refer [defroutes GET]]
     [compojure.handler :refer [site]]

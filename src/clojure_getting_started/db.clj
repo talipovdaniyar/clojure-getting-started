@@ -5,7 +5,7 @@
 
 (def db-uri
  (java.net.URI. (or
-   (System/getenv "DATABASE_URL")
+   ("postgres://rzdnlqvtihaywe:h8YMM9hPA-0CEPGPHvUJ23lo6r@ec2-54-228-246-19.eu-west-1.compute.amazonaws.com:5432/d3kf2u2jt4bnt3")
    "postgresql://localhost:5432/ticks")))
 
 (def user-and-password

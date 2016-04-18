@@ -26,15 +26,10 @@
       [:tick :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]))
       (println " done")))
 
-(defn tick []
-  (jdbc/insert! db/spec :ticks [:body] ["hello"]))
-
 (defroutes app
-  (GET "*" []
-    (tick)
-    {:status 200
-      :headers {"Content-Type" "text/plain"}
-      :body (str "Ticks: " (first (jdbc/query db/spec ["select count(*) from salesforce.case"])))}))
+  (GET "/" []
+       (sql/query "postgres://rzdnlqvtihaywe:h8YMM9hPA-0CEPGPHvUJ23lo6r@ec2-54-228-246-19.eu-west-1.compute.amazonaws.com:5432/d3kf2u2jt4bnt3" ["select * from salesforce.case"]))
+
 
 (defn -main [& [port]]
   (migrate)
